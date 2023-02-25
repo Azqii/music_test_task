@@ -8,7 +8,7 @@ from songs.models import Song
 class Album(models.Model):
     """Модель альбома"""
     record_author = models.ForeignKey(to=AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="Автор записи")
-    title = models.TextField(blank=False, verbose_name="Название")
+    title = models.CharField(max_length=100, blank=False, verbose_name="Название")
     release_date = models.DateField()
     performer = models.ForeignKey(
         to=Performer, on_delete=models.CASCADE, verbose_name="Исполнитель", related_name="albums"
