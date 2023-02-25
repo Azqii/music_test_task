@@ -140,6 +140,9 @@ REST_FRAMEWORK = {
 
         # JWT аутентификация
         "rest_framework_simplejwt.authentication.JWTAuthentication"
+    ],
+    "DEFAULT_PERMISSION_CLASSES": [
+        "common.permissions.IsAdminOrAuthorOrReadOnly"
     ]
 }
 
