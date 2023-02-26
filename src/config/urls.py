@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
+from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,7 +26,11 @@ urlpatterns = [
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
 
-    # Маршруты к эндпоинтам из моих приложений
+    # Маршруты для документации (Swagger)
+    path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
+    path("api/docs/", SpectacularSwaggerView.as_view(url_name="schema")),
+
+    # Маршруты к эндпоинтам созданных приложений
     path("api/v1/songs/", include("songs.urls")),
     path("api/v1/performers/", include("performers.urls")),
     path("api/v1/albums/", include("albums.urls"))
